@@ -9,9 +9,6 @@
 import React from 'react';
 import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
@@ -20,14 +17,8 @@ import {
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {AppRouting} from "./SnapZen/shared/routing/app.routing";
-import {NavigationContainer} from "@react-navigation/native";
-import HomeScreen from "./SnapZen/pages/home/home.component";
+import {AppContainer} from "./SnapZen/shared/routing/app.routing";
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -63,11 +54,7 @@ const App: () => Node = () => {
   };
 
   return (
-    <NavigationContainer>
-        <AppRouting.Navigator>
-            <AppRouting.Screen name="Home" component={HomeScreen}></AppRouting.Screen>
-        </AppRouting.Navigator>
-    </NavigationContainer>
+    <AppContainer/>
   );
 };
 
