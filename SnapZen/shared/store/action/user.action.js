@@ -6,6 +6,10 @@ export const FETCH_CONNECTION = 'FETCH_CONNECTION'
 export const FETCH_CONNECTION_SUCCESS = 'FETCH_CONNECTION_SUCCESS'
 export const FETCH_CONNECTION_ERROR = 'FETCH_CONNECTION_EROR'
 
+export const POST_CONNECTION = 'POST_CONNECTION'
+export const POST_CONNECTION_SUCCESS = 'POST_CONNECTION_SUCCESS'
+export const POST_CONNECTION_ERROR = 'POST_CONNECTION_ERROR'
+
 export const fetchUserUuid = () => {
     return { type: FETCH_USER_UUID}
 }
@@ -26,6 +30,14 @@ export const fetchConnectionSuccess = (connectionId) => {
     return { type: FETCH_CONNECTION_SUCCESS, connectionId}
 }
 
-export const fetchConnectionError = (error) => {
-    return { type: FETCH_CONNECTION_ERROR, error}
+export const postConnection = () => {
+    return { type: POST_CONNECTION}
+}
+
+export const postConnectionSuccess = (room) => {
+    return { type: POST_CONNECTION_SUCCESS, room }
+}
+
+export const postConnectionError = (error) => {
+    return { type: POST_CONNECTION_ERROR, error}
 }
