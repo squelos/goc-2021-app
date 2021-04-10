@@ -24,17 +24,16 @@ class HomeScreen extends React.Component {
                 <Image source={images.LOGO} style={{height: 300, width: 300, alignSelf: 'center'}}
                        resizeMode="contain"/>
                 <View style={{paddingHorizontal: 100, marginTop: 72}}>
-                    <Text style={{fontSize: 32, alignSelf: 'center', textAlign: 'center', fontWeight: 'bold'}}>Bienvenue
-                        sur SnapZen</Text>
+                    <Image source={images.WELCOME} />
                 </View>
-                <View style={{paddingHorizontal: 52, marginTop: 32}}>
+                <View style={{paddingHorizontal: 48, marginTop: 32}}>
                     <Text
                         style={{fontSize: 16, lineHeight: 20, alignSelf: 'center', textAlign: 'center'}}>
                         Déclarer un sinistre sans stress grâce à votre conseiller</Text>
                 </View>
             </View>
             <View style={{flex: 1}}>
-                <Text style={{alignSelf: "center", marginBottom: 16, color: commonStyle.purpleColor, fontSize: 12}}>Pour
+                <Text style={{alignSelf: "center", marginBottom: 24, color: commonStyle.purpleColor, fontSize: 12}}>Pour
                     commencer,
                     êtes vous ?</Text>
                 <View style={{paddingHorizontal: 24, marginBottom: 16}}>

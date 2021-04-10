@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native";
 
 export const commonStyle = {
     purpleColor: '#8a56ac',
+    lightPurpleColor: '#b99acd',
     softGreenColor: '#89c5cc',
     softBlueColor: '#ECF9FB'
 }

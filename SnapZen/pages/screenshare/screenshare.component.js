@@ -11,9 +11,7 @@ import {onUpdateImage} from "../../shared/store/action/snap.action";
 import RNFS from 'react-native-fs'
 import Rtc from "../../shared/component/web-rtc/web-rtc.component";
 import {useNavigation, useRoute} from "@react-navigation/native";
-import {UserTypeEnum} from "../../shared/enum/type-user.enum";
-import { Rtctest } from "../../shared/component/web-rtc/rtc-test.component";
-
+import {Rtctest} from "../../shared/component/web-rtc/rtc-test.component";
 const ScreenShare = () => {
     const width = Dimensions.get('window').width
     const {params} = useRoute()
@@ -29,7 +27,7 @@ const ScreenShare = () => {
                 dispatch(onUpdateImage({uri: urlString}))
             })
         }
-    }, [isPress]);
+    }, [isPress, locationX, locationY]);
 
     return (<View style={{flex: 1}}>
         <StatusBar barStyle="light-content"/>
@@ -53,15 +51,15 @@ const ScreenShare = () => {
         {/*        </TouchableOpacity>*/}
         {/*    </ViewShot>*/}
         {/*</View>*/}
-        <View style={{top: -48}}>
+        {/*<View style={{top: -48}}>*/}
             {/*<PicturePicker isPress={isPress}/>*/}
-            <View style={{marginTop: 350}}>
-                <ButtonZen title="Finaliser mon dossier" color={commonStyle.purpleColor}/>
-            </View>
+            {/*<View style={{marginTop: 350}}>*/}
+            {/*    <ButtonZen title="Finaliser mon dossier" color={commonStyle.purpleColor}/>*/}
             {/*</View>*/}
-        </View>
+            {/*</View>*/}
+        {/*</View>*/}
         <View style={{flex: 1}}>
-            <Rtctest/>
+            <Rtctest />
         </View>
     </View>)
 }

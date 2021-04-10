@@ -8,7 +8,7 @@ import images from "../../assets/images.registery";
 import {Image} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {API_URI, fetchConnectionId} from "../../shared/services/api.service";
-import {fetchConnectionError, fetchConnectionSuccess} from "../../shared/store/action/user.action";
+import {fetchConnection, fetchConnectionError, fetchConnectionSuccess} from "../../shared/store/action/user.action";
 import {useNavigation} from "@react-navigation/native";
 import * as apiService from '../../shared/services/api.service'
 
@@ -18,25 +18,14 @@ const AccessScreen = ({route, navigation}) => {
     return type === UserTypeEnum.AGENT ? AgentRender((newPin) => pinIsSet(newPin), pinCode) : UserRender((newPin) => pinIsSet(newPin), pinCode)
 }
 
-const AgentRender = (settingNewPin, pinCode) => {
+const AgentRender = (settingNewPin) => {
     const dispatch = useDispatch()
     const navigation = useNavigation()
+    const user = useSelector(state => state.user)
     useEffect(() => {
-        fetch(API_URI + `connection/createSessionId`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(async (res) => {
-                if (res.error) {
-                    throw(res.error)
-                }
-                settingNewPin(res.sessionId)
-                dispatch(fetchConnectionSuccess(res.sessionId));
-            }).catch(error => dispatch(fetchConnectionError(error)))
-    }, [])
+        dispatch(apiService.fetchConnectionId())
+        settingNewPin(user.connectionId)
+    },[])
     return (<View style={{flex: 1}}>
         <View style={{flex: 1, marginTop: 72}}>
             <View style={{paddingHorizontal: 56}}>
@@ -54,7 +43,7 @@ const AgentRender = (settingNewPin, pinCode) => {
                 <Text>Accéder à l'application</Text>
             </Button>
             <View style={{marginTop: 48}}>
-                <RoundedContainer pin={pinCode}/>
+                <RoundedContainer pin={user.connectionId}/>
             </View>
         </View>
         <View style={{flex: 1, marginTop: 72}}>
@@ -68,7 +57,6 @@ const UserRender = (setPinCode, pinCode) => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
     const apiCall = useCallback(() => {
-        console.log(pinCode, user.name, user.uuid)
         dispatch(apiService.postConnectionId(pinCode, user.name, user.uuid))
     })
     return (<View style={{flex: 1}}>
@@ -88,10 +76,10 @@ const UserRender = (setPinCode, pinCode) => {
                 <Image source={images.MAIL}/>
             </View>
             <View style={{paddingHorizontal: 24, marginTop: 40}}>
-                <Button style={buttonStyle(commonStyle.purpleColor)} onPress={() => {
+                <Button style={[pinCode.length >= 2 ? buttonStyle(commonStyle.purpleColor): buttonStyle(commonStyle.lightPurpleColor)]} onPress={() => {
                     apiCall()
                     navigation.navigate('Sharing', {user: UserTypeEnum.USER})
-                }}>
+                }} disabled={pinCode.length === 0}>
                     <Text>Accéder à l'application</Text>
                 </Button>
             </View>

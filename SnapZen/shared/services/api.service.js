@@ -49,18 +49,21 @@ export const fetchConnectionId = () => {
                 if (res.error) {
                     throw(res.error)
                 }
-                dispatch(fetchConnectionSuccess(res.id));
+                console.log(res)
+                dispatch(fetchConnectionSuccess(res.sessionId));
             }).catch(error => dispatch(fetchConnectionError(error)))
     }
 }
 
 export const postConnectionId = (pinCode, uuid, name) => {
-    const body = `{\"id\":\"ba4f77ce-bc33-4f83-8a2c-1413aa28c47e\",\"displayName\":\"jean\"}`
     return dispatch => {
         dispatch(postConnection());
         fetch(`${API_URI}connection/inputSessionId?sessionId=${pinCode.toString()}`, {
             method: 'POST',
-            body,
+            body: {
+              id: uuid,
+              displayName: name
+            },
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'

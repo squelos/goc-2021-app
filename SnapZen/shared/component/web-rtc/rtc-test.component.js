@@ -6,7 +6,9 @@ import { RTCPeerConnection, RTCView, mediaDevices, RTCIceCandidate, RTCSessionDe
 const configuration = {
     iceServers: [
         {
-            urls: ['stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'],
+            url: 'stun:turboreactcore.westeurope.cloudapp.azure.com:3478',
+            username: 'batman',
+            credentials: 'foobarPwC'
         },
     ],
     iceCandidatePoolSize: 10,
@@ -21,9 +23,7 @@ export function Rtctest({ setScreen, screens }) {
         }
         setLocalStream();
         setRemoteStream();
-        setCachedLocalPC();
-        // cleanup
-        setScreen(screens.ROOM);
+        setCachedLocalPC()
     }
 
     const [localStream, setLocalStream] = useState();
@@ -61,7 +61,18 @@ export function Rtctest({ setScreen, screens }) {
     };
 
     const startCall = async id => {
+
         const localPC = new RTCPeerConnection(configuration);
+        console.log(id)
+        const dataChannel = localPC.createDataChannel(id)
+        const offer = await localPC.createOffer()
+        await localPC.setLocalDescription(offer)
+        dataChannel.send(offer)
+
+        dataChannel.onmessage = message => {
+            console.log(message)
+        }
+
         localPC.addStream(localStream);
 
         localPC.createOffer().then(desc => localPC.setLocalDescription(desc).then(() => {
@@ -73,9 +84,14 @@ export function Rtctest({ setScreen, screens }) {
                 console.log('Got final candidate!');
                 return;
             }
-            localPC.addIceCandidate(new RTCIceCandidate(e.candidate))
-            console.log(e.candidate.toJSON())
+            // console.log(e.candidate.toJSON())
         };
+
+        localPC.onconnectionstatechange = e => {
+            if(e){
+                console.log(`${e.iceConnectionState} STATE`)
+            }
+        }
 
         localPC.onaddstream = e => {
             if (e.stream && remoteStream !== e.stream) {
@@ -83,23 +99,6 @@ export function Rtctest({ setScreen, screens }) {
                 setRemoteStream(e.stream);
             }
         };
-
-        // roomRef.onSnapshot(async snapshot => {
-        //     const data = snapshot.data();
-        //     if (!localPC.currentRemoteDescription && data.answer) {
-        //         const rtcSessionDescription = new RTCSessionDescription(data.answer);
-        //         await localPC.setRemoteDescription(rtcSessionDescription);
-        //     }
-        // });
-        //
-        // roomRef.collection('calleeCandidates').onSnapshot(snapshot => {
-        //     snapshot.docChanges().forEach(async change => {
-        //         if (change.type === 'added') {
-        //             let data = change.doc.data();
-        //             await localPC.addIceCandidate(new RTCIceCandidate(data));
-        //         }
-        //     });
-        // });
 
         setCachedLocalPC(localPC);
     };

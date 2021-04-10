@@ -23,7 +23,7 @@ export const fetchUserUuidError = (error) => {
 }
 
 export const fetchConnection = () => {
-
+ return {type: FETCH_CONNECTION }
 }
 
 export const fetchConnectionSuccess = (connectionId) => {

@@ -12,6 +12,11 @@ export const Rtc = (user) => {
 
     const [isMuted, setIsMuted] = React.useState(false);
 
+    useEffect(() => {
+        startLocalStream()
+        startCall()
+    },[])
+
     const startLocalStream = async (userType) => {
         // isFront will determine if the initial camera should face user or environment
         const isFront = false;
@@ -38,9 +43,14 @@ export const Rtc = (user) => {
 
     const startCall = async () => {
         // You'll most likely need to use a STUN server at least. Look into TURN and decide if that's necessary for your project
-        const configuration = {iceServers: [{url: 'stun.sipnet.net:3478'}]};
+        const configuration = {iceServers: [{url: 'stun:turboreactcore.westeurope.cloudapp.azure.com:3478'}]};
+        mediaDevices.enumerateDevices().then(devices => {
+            console.log(devices)
+        })
         const localPC = new RTCPeerConnection(configuration);
         const remotePC = new RTCPeerConnection(configuration);
+
+
 
         // could also use "addEventListener" for these callbacks, but you'd need to handle removing them as well
         localPC.onicecandidate = e => {
