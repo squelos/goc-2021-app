@@ -1,11 +1,15 @@
 import React from 'react'
 import {Text, View} from "native-base";
-import {StyleSheet} from "react-native";
+import {StyleSheet, TextInput} from "react-native";
 
-const RoundedContainer = () => {
+const RoundedContainer = ({pin, onSetPin, isSetInput}) => {
+
+    const renderInput = isSetInput ? <TextInput placeholder={pin} style={roundedStyle.text} onChangeText={(text) => onSetPin(text)}/> :
+        <Text style={roundedStyle.text}>{pin}</Text>;
+
     return (<View style={roundedStyle.container}>
         <View style={roundedStyle.rounded}>
-        <Text style={roundedStyle.text}>_ _ _ _</Text>
+            {renderInput}
         </View>
     </View>)
 }
@@ -15,13 +19,14 @@ const roundedStyle = StyleSheet.create({
         paddingHorizontal: 36,
     },
     rounded: {
-        backgroundColor: 'white', shadowColor: "#000",
+        backgroundColor: 'white',
         padding: 32,
         borderRadius: 32,
         shadowOffset: {
             width: 0,
             height: 1,
         },
+        shadowColor: "#000",
         shadowOpacity: 0.20,
         shadowRadius: 1.41,
 

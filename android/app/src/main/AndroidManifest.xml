@@ -2,7 +2,9 @@
   package="com.mobileapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <uses-permission android:name="android.permission.ACCEPT_HANDOVER" />
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
