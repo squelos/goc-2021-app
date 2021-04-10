@@ -33,7 +33,6 @@ export function fetchUuid(name: string) {
 }
 
 export const fetchConnectionId = () => {
-    console.log('test')
     return dispatch => {
         dispatch(fetchConnection());
         fetch(`${API_URI}connection/createSessionId`, {
@@ -44,7 +43,6 @@ export const fetchConnectionId = () => {
             }
         }).then(response => response.json())
             .then(async (res) => {
-            console.log(res, 'res')
                 if(res.error){
                     throw(res.error)
                 }

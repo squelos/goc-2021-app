@@ -11,7 +11,6 @@ export const fetchUserUuid = () => {
 }
 
 export const fetchUserUuidSuccess = (uuid, name) => {
-    console.log(uuid)
     return { type: FETCH_USER_UUID_SUCCESS, uuid, name}
 }
 

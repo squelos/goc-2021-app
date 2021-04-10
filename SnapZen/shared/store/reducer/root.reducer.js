@@ -4,7 +4,7 @@ import userReducer from "./user.reducer";
 
 const rootReducer = combineReducers({
     user: userReducer,
-    // snap: snapReducer
+    snap: snapReducer
 })
 
 export default rootReducer

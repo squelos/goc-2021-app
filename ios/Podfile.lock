@@ -264,6 +264,8 @@ PODS:
     - React-Core
   - react-native-sensitive-info (6.0.0-alpha.9):
     - React-Core
+  - react-native-view-shot (3.1.2):
+    - React
   - React-perflogger (0.64.0)
   - React-RCTActionSheet (0.64.0):
     - React-Core/RCTActionSheetHeaders (= 0.64.0)
@@ -330,6 +332,8 @@ PODS:
     - React-perflogger (= 0.64.0)
   - RNCMaskedView (0.1.10):
     - React
+  - RNFS (2.17.0):
+    - React
   - RNGestureHandler (1.10.3):
     - React-Core
   - RNPermissions (3.0.1):
@@ -364,6 +368,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - RNScreens (3.1.0):
+    - React-Core
+  - RNShare (5.2.2):
     - React-Core
   - RNVectorIcons (8.1.0):
     - React-Core
@@ -414,6 +420,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-sensitive-info (from `../node_modules/react-native-sensitive-info`)
+  - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -427,10 +434,12 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNShare (from `../node_modules/react-native-share`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -492,6 +501,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-sensitive-info:
     :path: "../node_modules/react-native-sensitive-info"
+  react-native-view-shot:
+    :path: "../node_modules/react-native-view-shot"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -518,6 +529,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNPermissions:
@@ -526,6 +539,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -564,6 +579,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 0ae35a37b20d5e031eb020a69cc5afdbd6406301
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-sensitive-info: d44e909d065f9c0e15734245e5dd6a24b82e3dcd
+  react-native-view-shot: 08c46c9e8e92f6681e8f2ffa55ac3d06e7e99070
   React-perflogger: 9c547d8f06b9bf00cb447f2b75e8d7f19b7e02af
   React-RCTActionSheet: 3080b6e12e0e1a5b313c8c0050699b5c794a1b11
   React-RCTAnimation: 3f96f21a497ae7dabf4d2f150ee43f906aaf516f
@@ -577,10 +593,12 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: cad74a1eaa53ee6e7a3620231939d8fe2c6afcf0
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNFS: 93d5b5535eb39d98e6b19009faa8fe717f7ea45d
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNPermissions: eb94f9fdc0a8ecd02fcce0676d56ffb1395d41e1
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: 3ba2198ca3179f77f6158425fc31ba3c90a0d49f
+  RNShare: 5cfe16bfd42cd2c4869a7692462181ac8cc15a6d
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
