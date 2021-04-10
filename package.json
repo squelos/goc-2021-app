@@ -20,6 +20,7 @@
     "react-native-elements": "^3.3.2",
     "react-native-fs": "^2.17.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-incall-manager": "^3.3.0",
     "react-native-indicators": "^0.17.0",
     "react-native-permissions": "^3.0.1",
     "react-native-reanimated": "^2.1.0",
@@ -28,12 +29,16 @@
     "react-native-sensitive-info": "^6.0.0-alpha.9",
     "react-native-share": "^5.2.2",
     "react-native-snap-carousel": "^3.9.1",
+    "react-native-swiper-flatlist": "^3.0.14",
     "react-native-vector-icons": "^8.1.0",
     "react-native-view-shot": "^3.1.2",
+    "react-native-webrtc": "^1.89.1",
     "react-navigation": "^4.4.4",
     "react-redux": "^7.2.3",
+    "reconnecting-websocket": "^4.4.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.13.15",

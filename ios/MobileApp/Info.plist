@@ -57,7 +57,9 @@
         <string>Photo</string>
         <key>NSPhotoLibraryAddUsageDescription</key>
         <string>Library</string>
-        <key>NSMicrophoneUsageDescription</key>
-          <string>Micro</string>
+       <key>NSCameraUsageDescription</key>
+       <string>Camera permission description</string>
+       <key>NSMicrophoneUsageDescription</key>
+       <string>Microphone permission description</string>
 </dict>
 </plist>

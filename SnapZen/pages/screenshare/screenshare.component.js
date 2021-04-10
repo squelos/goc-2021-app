@@ -12,7 +12,7 @@ import RNFS from 'react-native-fs'
 import Rtc from "../../shared/component/web-rtc/web-rtc.component";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {UserTypeEnum} from "../../shared/enum/type-user.enum";
-import Rtctest from "../../shared/component/web-rtc/rtc-test.component";
+import { Rtctest } from "../../shared/component/web-rtc/rtc-test.component";
 
 const ScreenShare = () => {
     const width = Dimensions.get('window').width

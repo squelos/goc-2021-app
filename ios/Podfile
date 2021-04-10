@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'MobileApp' do
   config = use_native_modules!
@@ -11,6 +11,9 @@ target 'MobileApp' do
   pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary"
   pod 'Permission-PhotoLibraryAddOnly', :path => "#{permissions_path}/PhotoLibraryAddOnly"
+  pod 'Firebase/Storage'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
 
   use_react_native!(
     :path => config[:reactNativePath],
