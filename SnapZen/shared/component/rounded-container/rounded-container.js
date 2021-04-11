@@ -4,7 +4,7 @@ import {StyleSheet, TextInput} from "react-native";
 
 const RoundedContainer = ({pin, onSetPin, isSetInput}) => {
 
-    const renderInput = isSetInput ? <TextInput placeholder={pin} style={roundedStyle.text} onChangeText={(text) => onSetPin(text)}/> :
+    const renderInput = isSetInput ? <TextInput placeholder={"_ _ _ _"} style={roundedStyle.text} onChangeText={(text) => onSetPin(text)} underlineColorAndroid="transparent"/> :
         <Text style={roundedStyle.text}>{pin}</Text>;
 
     return (<View style={roundedStyle.container}>

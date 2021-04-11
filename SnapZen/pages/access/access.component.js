@@ -13,7 +13,7 @@ import {useNavigation} from "@react-navigation/native";
 import * as apiService from '../../shared/services/api.service'
 
 const AccessScreen = ({route, navigation}) => {
-    const [pinCode, pinIsSet] = useState("_ _ _ _")
+    const [pinCode, pinIsSet] = useState("")
     const {type} = route.params
     return type === UserTypeEnum.AGENT ? AgentRender((newPin) => pinIsSet(newPin), pinCode) : UserRender((newPin) => pinIsSet(newPin), pinCode)
 }
@@ -22,10 +22,18 @@ const AgentRender = (settingNewPin) => {
     const dispatch = useDispatch()
     const navigation = useNavigation()
     const user = useSelector(state => state.user)
+
     useEffect(() => {
         dispatch(apiService.fetchConnectionId())
         settingNewPin(user.connectionId)
     },[])
+
+    useEffect(() => {
+        setTimeout(() => {
+            navigation.navigate('Sharing', {user: UserTypeEnum.AGENT})
+        }, 10000)
+    }, [])
+
     return (<View style={{flex: 1}}>
         <View style={{flex: 1, marginTop: 72}}>
             <View style={{paddingHorizontal: 56}}>
@@ -37,11 +45,6 @@ const AgentRender = (settingNewPin) => {
                 <Text style={{fontSize: 16, textAlign: 'center'}}>Merci de transmettre ce code à votre
                     assuré pour initier la connexion :</Text>
             </View>
-            <Button style={buttonStyle(commonStyle.purpleColor)} onPress={() => {
-                navigation.navigate('Sharing', {user: UserTypeEnum.AGENT})
-            }}>
-                <Text>Accéder à l'application</Text>
-            </Button>
             <View style={{marginTop: 48}}>
                 <RoundedContainer pin={user.connectionId}/>
             </View>
@@ -79,7 +82,7 @@ const UserRender = (setPinCode, pinCode) => {
                 <Button style={[pinCode.length >= 2 ? buttonStyle(commonStyle.purpleColor): buttonStyle(commonStyle.lightPurpleColor)]} onPress={() => {
                     apiCall()
                     navigation.navigate('Sharing', {user: UserTypeEnum.USER})
-                }} disabled={pinCode.length === 0}>
+                }} disabled={pinCode.length <= 0}>
                     <Text>Accéder à l'application</Text>
                 </Button>
             </View>

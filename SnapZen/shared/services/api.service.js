@@ -6,8 +6,7 @@ import {
     fetchUserUuidError,
     fetchUserUuidSuccess, postConnection, postConnectionError, postConnectionSuccess
 } from "../store/action/user.action";
-import NInfo from 'react-native-sensitive-info'
-
+import * as secureStore from './secure-store.service';
 export const API_URI = 'https://goc-snapzen-d.azurewebsites.net/'
 
 
@@ -25,11 +24,7 @@ export function fetchUuid(name: string) {
                 if (res.error) {
                     throw(res.error)
                 }
-                await NInfo.setItem("id", res.id, {keychainService: 'SnapZen', sharedPreferencesName: 'SnapZen'});
-                await NInfo.setItem("name", res.displayName, {
-                    keychainService: 'SnapZen',
-                    sharedPreferencesName: 'SnapZen'
-                });
+                await secureStore.setData("id", res.id);
                 dispatch(fetchUserUuidSuccess(res.id, res.displayName));
             }).catch(error => dispatch(fetchUserUuidError(error)))
     }
@@ -49,7 +44,6 @@ export const fetchConnectionId = () => {
                 if (res.error) {
                     throw(res.error)
                 }
-                console.log(res)
                 dispatch(fetchConnectionSuccess(res.sessionId));
             }).catch(error => dispatch(fetchConnectionError(error)))
     }
@@ -70,7 +64,6 @@ export const postConnectionId = (pinCode, uuid, name) => {
             }
         }).then(response => response.text())
             .then(async (res) => {
-                console.log(res)
                 if (res.error) {
                     throw(res.error)
                 }

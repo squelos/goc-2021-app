@@ -15,7 +15,7 @@ export const Rtc = (user) => {
     useEffect(() => {
         startLocalStream()
         startCall()
-    },[])
+    }, [])
 
     const startLocalStream = async (userType) => {
         // isFront will determine if the initial camera should face user or environment
@@ -43,19 +43,14 @@ export const Rtc = (user) => {
 
     const startCall = async () => {
         // You'll most likely need to use a STUN server at least. Look into TURN and decide if that's necessary for your project
-        const configuration = {iceServers: [{url: 'stun:turboreactcore.westeurope.cloudapp.azure.com:3478'}]};
-        mediaDevices.enumerateDevices().then(devices => {
-            console.log(devices)
-        })
+        const configuration = {iceServers: [{urls: 'stun:turboreactcore.westeurope.cloudapp.azure.com:3478'}]};
         const localPC = new RTCPeerConnection(configuration);
         const remotePC = new RTCPeerConnection(configuration);
-
 
 
         // could also use "addEventListener" for these callbacks, but you'd need to handle removing them as well
         localPC.onicecandidate = e => {
             try {
-                console.log('localPC icecandidate:', e.candidate);
                 if (e.candidate) {
                     remotePC.addIceCandidate(e.candidate);
                 }
@@ -65,18 +60,15 @@ export const Rtc = (user) => {
         };
         remotePC.onicecandidate = e => {
             try {
-                console.log('remotePC icecandidate:', e.candidate);
                 if (e.candidate) {
-                    localPC.addIceCandidate(e.candidate);
+
                 }
             } catch (err) {
                 console.error(`Error adding localPC iceCandidate: ${err}`);
             }
         };
         remotePC.onaddstream = e => {
-            console.log('remotePC tracking with ', e);
             if (e.stream && remoteStream !== e.stream) {
-                console.log('RemotePC received the stream', e.stream);
                 setRemoteStream(e.stream);
             }
         };
@@ -86,16 +78,10 @@ export const Rtc = (user) => {
         localPC.addStream(localStream);
         try {
             const offer = await localPC.createOffer();
-            console.log('Offer from localPC, setLocalDescription');
             await localPC.setLocalDescription(offer);
-            console.log('remotePC, setRemoteDescription');
             await remotePC.setRemoteDescription(localPC.localDescription);
-            console.log('RemotePC, createAnswer');
             const answer = await remotePC.createAnswer();
-            console.log(`Answer from remotePC: ${answer.sdp}`);
-            console.log('remotePC, setLocalDescription');
             await remotePC.setLocalDescription(answer);
-            console.log('localPC, setRemoteDescription');
             await localPC.setRemoteDescription(remotePC.localDescription);
         } catch (err) {
             console.error(err);
@@ -132,25 +118,17 @@ export const Rtc = (user) => {
         setCachedRemotePC();
         setCachedLocalPC();
     };
-    useEffect(async ()=> startCall(), [])
+    useEffect(async () => startCall(), [])
     return (
         <View style={styles.container}>
-            {/*{localStream && <Button title="Click to start call" onPress={startCall} disabled={!!remoteStream} />}*/}
 
-            {/*{localStream && (*/}
-            {/*    <View style={styles.toggleButtons}>*/}
-            {/*        <Button title="Switch camera" onPress={switchCamera} />*/}
-            {/*        <Button title={`${isMuted ? 'Unmute' : 'Mute'} stream`} onPress={toggleMute} disabled={!remoteStream} />*/}
-            {/*    </View>*/}
-            {/*)}*/}
 
             <View style={styles.rtcview}>
-                {localStream && <RTCView style={styles.rtc} streamURL={localStream.toURL()}/>}
-            {/*{!localStream && <Button title="Click to start stream" onPress={startLocalStream} />}*/}
+                {localStream && <RTCView  style={styles.rtc} streamURL={localStream.toURL()}/>}
             </View>
-        {user === userTypeEnum.AGENT && <View style={styles.rtcview}>
-                <RTCView style={styles.rtc} streamURL={remoteStream.toURL()} />
-            </View> }
+            {user === userTypeEnum.AGENT && <View style={styles.rtcview}>
+                <RTCView style={styles.rtc} streamURL={remoteStream.toURL()}/>
+            </View>}
         </View>
     );
 }
@@ -165,6 +143,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 400,
         backgroundColor: 'black',
+        resizeMode: 'contain'
     },
     rtc: {
         width: '80%',
