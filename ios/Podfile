@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 
-target 'MobileApp' do
+target 'SnapZen' do
   config = use_native_modules!
 
   permissions_path = '../node_modules/react-native-permissions/ios'
@@ -21,7 +21,7 @@ target 'MobileApp' do
     :hermes_enabled => false
   )
 
-  target 'MobileAppTests' do
+  target 'SnapZenTests' do
     inherit! :complete
     # Pods for testing
   end
