@@ -64,7 +64,7 @@ const UserRender = (setPinCode, pinCode) => {
         <View style={{flex: 1, marginTop: 80}}>
             <View style={{flexDirection: 'row', alignSelf: 'center'}}>
                 <Text style={{alignSelf: 'center', fontSize: 32}}>Bonjour</Text>
-                <Text style={{alignSelf: 'center', fontSize: 32, color: commonStyle.purpleColor, paddingLeft: 8}}>{user.name},</Text>
+                <Text style={{alignSelf: 'center', fontSize: 32, color: commonStyle.purpleColor, marginLeft: 8}}>{user.name},</Text>
             </View>
             <View style={{paddingHorizontal: 72}}>
                 <Text style={{marginTop: 72, fontSize: 16, textAlign: 'center'}}>pour accéder à l'application merci
