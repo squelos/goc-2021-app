@@ -30,7 +30,7 @@ const HomeScreen = () => {
 
     useEffect(async () => {
         !await hasUuid() ?
-            dispatch(fetchUuid("jean")) :
+            dispatch(fetchUuid()) :
             dispatch(fetchSensitiveData(await getData('id'), await getData('name')))
     }, [])
 

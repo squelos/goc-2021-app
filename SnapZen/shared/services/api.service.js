@@ -7,26 +7,29 @@ import {
     fetchUserUuidSuccess, postConnection, postConnectionError, postConnectionSuccess
 } from "../store/action/user.action";
 import * as secureStore from './secure-store.service';
+
 export const API_URI = 'https://goc-snapzen-d.azurewebsites.net/'
 
 
-export function fetchUuid(name: string) {
+export function fetchUuid() {
     return dispatch => {
         dispatch(fetchUserUuid());
-        fetch(`${API_URI}connection/firstConnect?name=${name}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(async (res) => {
-                if (res.error) {
-                    throw(res.error)
+        secureStore.getData("name").then(name => {
+            fetch(`${API_URI}connection/firstConnect?name=${name}`, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
                 }
-                await secureStore.setData("id", res.id);
-                dispatch(fetchUserUuidSuccess(res.id, res.displayName));
-            }).catch(error => dispatch(fetchUserUuidError(error)))
+            }).then(response => response.json())
+                .then(async (res) => {
+                    if (res.error) {
+                        throw(res.error)
+                    }
+                    await secureStore.setData("id", res.id);
+                    dispatch(fetchUserUuidSuccess(res.id, res.displayName));
+                }).catch(error => dispatch(fetchUserUuidError(error)))
+        })
     }
 }
 
@@ -55,8 +58,8 @@ export const postConnectionId = (pinCode, uuid, name) => {
         fetch(`${API_URI}connection/inputSessionId?sessionId=${pinCode.toString()}`, {
             method: 'POST',
             body: {
-              id: uuid,
-              displayName: name
+                id: uuid,
+                displayName: name
             },
             headers: {
                 Accept: 'application/json',

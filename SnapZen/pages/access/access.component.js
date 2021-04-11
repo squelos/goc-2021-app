@@ -1,4 +1,4 @@
-import React, {Component, useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState} from 'react'
 import {Button, Text, View} from "native-base";
 import RoundedContainer from "../../shared/component/rounded-container/rounded-container";
 import {UserTypeEnum} from "../../shared/enum/type-user.enum";
@@ -7,12 +7,10 @@ import Indicator from "../../shared/component/loading-indicator/indicator";
 import images from "../../assets/images.registery";
 import {Image} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
-import {API_URI, fetchConnectionId} from "../../shared/services/api.service";
-import {fetchConnection, fetchConnectionError, fetchConnectionSuccess} from "../../shared/store/action/user.action";
 import {useNavigation} from "@react-navigation/native";
 import * as apiService from '../../shared/services/api.service'
 
-const AccessScreen = ({route, navigation}) => {
+const AccessScreen = ({route}) => {
     const [pinCode, pinIsSet] = useState("")
     const {type} = route.params
     return type === UserTypeEnum.AGENT ? AgentRender((newPin) => pinIsSet(newPin), pinCode) : UserRender((newPin) => pinIsSet(newPin), pinCode)
@@ -64,7 +62,10 @@ const UserRender = (setPinCode, pinCode) => {
     })
     return (<View style={{flex: 1}}>
         <View style={{flex: 1, marginTop: 80}}>
-            <Text style={{alignSelf: 'center', fontSize: 32}}>Bonjour {user.name}</Text>
+            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+                <Text style={{alignSelf: 'center', fontSize: 32}}>Bonjour</Text>
+                <Text style={{alignSelf: 'center', fontSize: 32, color: commonStyle.purpleColor, paddingLeft: 8}}>{user.name},</Text>
+            </View>
             <View style={{paddingHorizontal: 72}}>
                 <Text style={{marginTop: 72, fontSize: 16, textAlign: 'center'}}>pour accéder à l'application merci
                     d'entrer le code que vous

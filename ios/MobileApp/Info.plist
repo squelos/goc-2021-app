@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>MobileApp</string>
+	<string>SnapZen</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -35,8 +35,18 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera permission description</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>KEYCHAIN</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone permission description</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,15 +61,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSFaceIDUsageDescription</key>
-      <string>KEYCHAIN</string>
-      <key>NSPhotoLibraryUsageDescription</key>
-        <string>Photo</string>
-        <key>NSPhotoLibraryAddUsageDescription</key>
-        <string>Library</string>
-       <key>NSCameraUsageDescription</key>
-       <string>Camera permission description</string>
-       <key>NSMicrophoneUsageDescription</key>
-       <string>Microphone permission description</string>
 </dict>
 </plist>
